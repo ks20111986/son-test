@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import time
 from datetime import datetime
 
 pairs = [
@@ -48,20 +47,20 @@ def find_position(url, keywords):
     except Exception:
         return result
 
-while True:
-    lines = []
-    lines.append(f"<h2>Обновлено: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</h2>")
+# Генерация html
+lines = []
+lines.append(f"<h2>Обновлено: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</h2>")
 
-    for label, url_mono, url_privat in pairs:
-        pos_mono = find_position(url_mono, ["Sona"])["Sona"]
-        pos_privat = find_position(url_privat, ["Sona"])["Sona"]
-        lines.append(f"{label} Mono {pos_mono} / Privat {pos_privat}")
+for label, url_mono, url_privat in pairs:
+    pos_mono = find_position(url_mono, ["Sona"])["Sona"]
+    pos_privat = find_position(url_privat, ["Sona"])["Sona"]
+    lines.append(f"{label} Mono {pos_mono} / Privat {pos_privat}")
 
-    for label, url in dop:
-        results = find_position(url, ["SwapsCenter", "KryptoSwap"])
-        lines.append(f"{label}: SwapsCenter {results['SwapsCenter']} / KryptoSwap {results['KryptoSwap']}")
+for label, url in dop:
+    results = find_position(url, ["SwapsCenter", "KryptoSwap"])
+    lines.append(f"{label}: SwapsCenter {results['SwapsCenter']} / KryptoSwap {results['KryptoSwap']}")
 
-    html = f"""<!DOCTYPE html>
+html = f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -95,7 +94,5 @@ while True:
 </html>
 """
 
-    with open("index.html", "w", encoding="utf-8") as f:
-        f.write(html)
-
-    time.sleep(20)
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html)

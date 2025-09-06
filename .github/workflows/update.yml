@@ -2,7 +2,7 @@ name: Update and Deploy Site
 
 on:
   schedule:
-    - cron: "*/5 * * * *"  # каждые 5 минут
+    - cron: "*/1 * * * *"  # каждые 5 минут
   workflow_dispatch:       # возможность запускать вручную
 
 permissions:

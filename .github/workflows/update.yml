@@ -2,8 +2,11 @@ name: Update BestChange Monitor
 
 on:
   schedule:
-    - cron: "*/2 * * * *"   # каждые 5 минут
-  workflow_dispatch:        # запуск вручную кнопкой
+    - cron: "*/3 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
